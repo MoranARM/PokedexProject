@@ -1,0 +1,12 @@
+python scraping helpful links for reference:
+
+python loops:
+https://www.tutorialspoint.com/python/python_for_loop.htm
+https://www.w3schools.com/python/python_for_loops.asp
+
+beautiful soup: 
+https://www.geeksforgeeks.org/implementing-web-scraping-python-beautiful-soup/
+https://stackoverflow.com/questions/24995821/beautifulsoup-how-to-get-indexes-of-elements-in-table-headers
+https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+https://bulbapedia.bulbagarden.net/wiki/List_of_Pokémon_by_National_Pokédex_number
+https://bulbapedia.bulbagarden.net/w/index.php?title=Bulbasaur_(Pok%C3%A9mon)&action=edit
