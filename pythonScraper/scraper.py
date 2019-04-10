@@ -20,14 +20,14 @@ for table in soup.findAll('table', attrs={'align': 'center'}):  # loop through e
         if((id!=0 and poke_names[id-1]!=title) or id==0):  # prevents duplicates
             poke_names.insert(id, title)
             print (poke_names[id]+' '+str(id+1))
-            id += 1
+            id += 1 
 
 # After collecting the names of each pokemon, the wikicode is taken from their respective urls
 # A new xml document is made containing all of the pokemon wikicode sorted by id
 
 root = ET.Element('root')
 for i in range(len(poke_names)-1):
-    poke_wiki.insert(i, new_soup('https://bulbapedia.bulbagarden.net/w/index.php?title='+ poke_names[i]+'_(Pok%C3%A9mon)&action=edit').textarea.string)
+    poke_wiki.insert(i, new_soup('https://bulbapedia.bulbagarden.net/w/index.php?title='+poke_names[i]+'_(Pok%C3%A9mon)&action=edit').textarea.string)
     ET.SubElement(root, 'pokemon', id=str(i), name=poke_names[i]).text = poke_wiki[i]  # adds in each of the pokemon wikicode in a pokemon subtag 
 
 file = ET.ElementTree(root)  # creates the Element Tree 
@@ -51,3 +51,11 @@ for row in type_table[2:-1]:  # Goes through the rows containing types and value
 
 type_chart = ET.ElementTree(chart)
 type_chart.write('typeMatchup.xml')  # new file is made holding the type matchup chart
+
+# The final data needed is the images of each pokemon
+for i in range(len(poke_names)-1):
+    temp_url = 'https:'+new_soup('https://bulbapedia.bulbagarden.net/w/index.php?title='+poke_names[i]+'_(Pok%C3%A9mon)').find('img', attrs={'alt': ''+poke_names[i]})['src']
+    print(temp_url)
+    r = requests.get(temp_url)
+    with open(''+poke_names[i]+'.png','wb') as f:  # creates the image and names it
+        f.write(r.content)  # writes the image
